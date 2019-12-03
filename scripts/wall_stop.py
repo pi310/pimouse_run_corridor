@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import rospy.copy
+import rospy,copy
 from geometry_msgs.msg import Twist
 from std_srvs.srv import Trigger, TriggerResponse
 from pimouse_ros.msg import LightSensorValues
