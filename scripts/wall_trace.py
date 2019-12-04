@@ -27,8 +27,8 @@ class WallStop():
             elif data.linear.x <= 0.2: data.linear.x = 0.2
             elif data.linear.x >= 0.8: data.linear.x = 0.8
 
-            if data.linear.x <= 0.2: data.linear.z = 0.0
-            elif data.linear.x >= 0.8: data.linear.z = 0.0
+            if data.linear.x < 0.2:   data.linear.z = 0.0
+            elif s.left_side < 10: data.linear.z = 0.0
             else:
                 target = 50
                 error = (target - s.left_side)/50.0
