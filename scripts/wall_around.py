@@ -25,7 +25,7 @@ class WallStop():
         data = Twist()
 
         data.linear.x = 0.3
-        data.angularz =0.0
+        data.angular.z = 0.0
         while not rospy.is_shutdown():
             if self.wall_front(self.sensor_values):
                  data.angular.z = - math.pi
