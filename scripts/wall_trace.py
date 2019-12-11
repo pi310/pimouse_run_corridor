@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import rospy,copy
+import math
 from geometry_msgs.msg import Twist
 from std_srvs.srv import Trigger, TriggerResponse
 from pimouse_ros.msg import LightSensorValues
@@ -24,10 +25,10 @@ class WallStop():
             data.linear.x += accel
 
             if s.sum_forward >= 50:    data.linear.x = 0.0
-            elif data.linear.x <= 0.2: data.linear.x = 0.2
-            elif data.linear.x >= 0.8: data.linear.x = 0.8
+            elif data.linear.x <= 0.1: data.linear.x = 0.1
+            elif data.linear.x >= 0.4: data.linear.x = 0.4
 
-            if data.linear.x < 0.2:   data.linear.z = 0.0
+            if data.linear.x < 0.1:   data.linear.z = 0.0
             elif s.left_side < 10: data.linear.z = 0.0
             else:
                 target = 50

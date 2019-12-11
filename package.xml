@@ -50,6 +50,7 @@
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>pimouse_ros</exec_depend>
+  <exec_depend>raspimouse_ros_2</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

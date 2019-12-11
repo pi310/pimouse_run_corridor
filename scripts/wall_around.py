@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import rospy,copy
+import math
 from geometry_msgs.msg import Twist
 from std_srvs.srv import Trigger, TriggerResponse
 from pimouse_ros.msg import LightSensorValues
@@ -20,6 +21,9 @@ class WallStop():
     def too_right(self,ls):
         return ls.right_side > 50
 
+    def too_left(self,ls):
+        return ls.left_side > 50
+
     def run(self):
         rate = rospy.Rate(20)
         data = Twist()
@@ -28,13 +32,11 @@ class WallStop():
         data.angular.z = 0.0
         while not rospy.is_shutdown():
             if self.wall_front(self.sensor_values):
-                 data.angular.z = - math.pi
+                data.angular.z = - math.pi
             elif self.too_right(self.sensor_values):
-                 data.angular.z = math.pi
+                data.angular.z = math.pi
             elif self.too_left(self.sensor_values):
-                 data.angular.z = - math.pi
-            if data.linear.x < 0.2:   data.linear.z = 0.0
-            elif s.left_side < 10: data.linear.z = 0.0
+                data.angular.z = - math.pi
             else:
                 e = 50 - self.sensor_values.left_side
                 data.angular.z = e * math.pi / 180.0
